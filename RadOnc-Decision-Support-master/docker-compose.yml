@@ -1,0 +1,24 @@
+version: '3'
+services:
+  autorad-db:
+    build: ./autoradiology-db
+    #ports:
+    #  - "5432:5432"
+  autorad-backend:
+    build: ./autoradiology-backend
+    # ports: 
+    #   - "3001:3001"
+    volumes:
+      - ./autoradiology-backend:/app/
+      - /app/node_modules/
+  autorad-ws:
+    build: ./autoradiology-ws
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./autoradiology-ws:/app/
+      - /app/node_modules/
+  autorad-go:
+    build: ./autoradiology-go
+    ports:
+      - 8088:8088
